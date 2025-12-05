@@ -1,0 +1,31 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "this is salam react",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saifissheikh/namaste-react.git"
+  },
+  "keywords": [
+    "namaste"
+  ],
+  "author": "saif sheikh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saifissheikh/namaste-react/issues"
+  },
+  "homepage": "https://github.com/saifissheikh/namaste-react#readme",
+  "devDependencies": {
+    "parcel": "^2.16.1"
+  },
+  "dependencies": {
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
