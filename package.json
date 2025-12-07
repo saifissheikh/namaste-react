@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "this is salam react",
   "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "repository": {
@@ -22,8 +24,12 @@
     "parcel": "^2.16.1"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "node-fetch": "^2.7.0",
     "react": "^19.2.1",
-    "react-dom": "^19.2.1"
+    "react-dom": "^19.2.1",
+    "react-router-dom": "^7.10.1"
   },
   "browserslist": [
     "last 2 versions"
