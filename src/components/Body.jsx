@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnelineStatus";
@@ -9,6 +9,8 @@ const Body = () => {
   const [filteredRestList, setFilteredRestList] = useState([]);
   const [searchText, setSearchText] = useState("");
   const isOnline = useOnlineStatus();
+
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   useEffect(() => {
     fetchData();
@@ -23,6 +25,32 @@ const Body = () => {
     const fetchedRestaurants =
       json?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
+    fetchedRestaurants.push({
+      info: {
+        id: "455674",
+        name: "Burger Hub",
+        cloudinaryImageId:
+          "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/24/acfcaacc-edf0-4189-8264-d614d312c0ee_740457.JPG",
+        locality: "Park Street",
+        areaName: "Downtown",
+        costForTwo: "₹300 for two",
+        promoted: true,
+        cuisines: ["Burgers", "American", "Fast Food"],
+        avgRating: 4.5,
+        avgRatingString: "4.5",
+        totalRatingsString: "15K+ ratings",
+        veg: false,
+        sla: {
+          deliveryTime: 25,
+          lastMileTravel: 2,
+          slaString: "25 mins",
+        },
+        aggregatedDiscountInfoV3: {
+          header: "40% OFF",
+          subHeader: "UPTO ₹80",
+        },
+      },
+    });
     setRestList(fetchedRestaurants);
     setFilteredRestList(fetchedRestaurants);
   };
@@ -74,7 +102,11 @@ const Body = () => {
       <div className="flex flex-wrap">
         {filteredRestList?.map((rest) => (
           <Link to={"/restaurants/" + rest.info.id} key={rest.info.id}>
-            <RestaurantCard resData={rest.info} />
+            {rest.info.promoted ? (
+              <RestaurantCardPromoted resData={rest.info} />
+            ) : (
+              <RestaurantCard resData={rest.info} />
+            )}
           </Link>
         ))}
       </div>
