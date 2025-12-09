@@ -1,8 +1,17 @@
 import React from "react";
 import { CDN_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const ItemList = (props) => {
   const { items } = props;
+
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  };
+
   return (
     <div>
       <div>
@@ -12,7 +21,10 @@ const ItemList = (props) => {
             className="p-2 m-2 border-gray-200 border-b-2 text-left flex"
           >
             <div>
-              <button className="p-2 bg-gray-100 cursor-pointer rounded-lg shadow-lg absolute m-auto">
+              <button
+                className="p-2 bg-gray-100 cursor-pointer rounded-lg shadow-lg absolute m-auto"
+                onClick={() => handleAddItem(item)}
+              >
                 Add +
               </button>
               <img
