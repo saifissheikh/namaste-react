@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router";
 import logo from "url:./../../assets/logo.webp";
 import useOnlineStatus from "../utils/useOnelineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
+  const { loggedInUser } = useContext(UserContext);
   const isOnline = useOnlineStatus();
 
   return (
@@ -31,6 +33,7 @@ const Header = () => {
           <button className="login" onClick={() => setIsLogin(!isLogin)}>
             {isLogin ? "Logout" : "Login"}
           </button>
+          <li className="px-4 font-bold">{loggedInUser}</li>
         </ul>
       </div>
     </div>

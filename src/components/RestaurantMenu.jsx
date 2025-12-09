@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
@@ -6,6 +6,7 @@ import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const restInfo = useRestaurantMenu(resId);
 
@@ -30,7 +31,16 @@ const RestaurantMenu = () => {
         {cuisines.join(", ")} - {restInfo?.costForTwo}
       </h2>
       {categories.map((category, index) => (
-        <RestaurantCategory key={index} data={category?.card?.card} />
+        <RestaurantCategory
+          key={index}
+          data={category?.card?.card}
+          onClick={(title) => {
+            title === selectedCategory
+              ? setSelectedCategory("")
+              : setSelectedCategory(title);
+          }}
+          isAccordianOpen={category?.card?.card?.title === selectedCategory}
+        />
       ))}
     </div>
   );
